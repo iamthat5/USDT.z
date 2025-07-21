@@ -1,0 +1,76 @@
+<!--
+USDT.z Token Info Page
+Network: BNB Smart Chain (BEP-20)
+Contract Address: 0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25
+Decimals: 11
+Symbol: USDT.z
+
+Purpose:
+This page provides official token information, contract metadata, and an interactive "Add to MetaMask" button 
+for wallet integration.
+
+Hosted on GitHub Pages for transparency and public access.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>USDT.z Token Info</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    .logo { width: 128px; height: 128px; }
+    button {
+      padding: 10px 20px;
+      background-color: #f6851b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <img src="usdtz_logo_128x128.png" alt="USDT.z Logo" class="logo">
+  <h1>USDT.z Token</h1>
+  <p><strong>Network:</strong> BNB Smart Chain (BEP-20)</p>
+  <p><strong>Contract:</strong> 0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25</p>
+  <p><strong>Symbol:</strong> USDT.z</p>
+  <p><strong>Decimals:</strong> 11</p>
+
+  <button id="addTokenBtn">Add USDT.z to MetaMask</button>
+
+  <script>
+    document.getElementById('addTokenBtn').addEventListener('click', async () => {
+      if (window.ethereum) {
+        try {
+          const wasAdded = await window.ethereum.request({
+            method: 'wallet_watchAsset',
+            params: {
+              type: 'ERC20',
+              options: {
+                address: '0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25',
+                symbol: 'USDT.z',
+                decimals: 11,
+                image: 'https://<YOUR_GITHUB_USERNAME>.github.io/<REPO_NAME>/usdtz_logo_128x128.png'
+              },
+            },
+          });
+
+          if (wasAdded) {
+            alert('USDT.z successfully added to MetaMask!');
+          } else {
+            alert('Token addition rejected.');
+          }
+        } catch (error) {
+          console.error(error);
+          alert('An error occurred. See console for details.');
+        }
+      } else {
+        alert('MetaMask is not detected. Please install MetaMask!');
+      }
+    });
+  </script>
+</body>
+</html>
