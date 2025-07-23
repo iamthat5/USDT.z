@@ -41,27 +41,49 @@ Hosted on GitHub Pages for transparency and public access.
   <p><strong>Decimals:</strong> 11</p>
 
   <button id="addTokenBtn">Add USDT.z to MetaMask</button>
-<!-- USDT.z Wallet Add Section for SafePal & Trust Wallet -->
-<div style="max-width:420px;margin:30px auto 0 auto;padding:18px 16px;background:#fff;border-radius:18px;box-shadow:0 2px 18px rgba(30,60,80,0.05);font-size:16px;">
-  <h2 style="font-size:1.25em;color:#1167b1;margin-top:0;">Add USDT.z to SafePal or Trust Wallet</h2>
-  <ol style="padding-left:22px;text-align:left;">
+  <!-- USDT.z Wallet Add Section for SafePal & Trust Wallet (Mobile Optimized) -->
+  <div id="usdtz-add-wallet" style="max-width:375px;width:96%;margin:30px auto 0 auto;padding:18px 10px 14px 10px;background:#181818;border-radius:14px;box-shadow:0 2px 16px rgba(30,60,80,0.11);font-size:15.6px;">
+  <h2 style="font-size:1.1em;color:#47a1e6;margin-top:0;text-align:center;margin-bottom:10px;">Add USDT.z to SafePal or Trust Wallet</h2>
+  <ol style="padding-left:22px;text-align:left;margin-bottom:0;">
     <li><b>Open</b> SafePal or Trust Wallet app.</li>
     <li>Tap <b>“Add Token”</b> or <b>“+”</b> (usually top right).</li>
     <li>Choose <b>BNB Smart Chain (BEP-20)</b> as the network.</li>
     <li>
       Paste contract address:<br>
-      <input type="text" value="0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25" id="usdtzContract" readonly style="width:97%;font-size:16px;padding:6px 4px;margin:4px 0;border:1px solid #eee;border-radius:6px;">
-      <button onclick="navigator.clipboard.writeText(document.getElementById('usdtzContract').value)" style="background:#f6851b;color:#fff;padding:6px 18px;border:none;border-radius:6px;font-size:15px;cursor:pointer;">Copy</button>
+      <input type="text" value="0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25" id="usdtzContract" readonly style="width:97%;font-size:16px;padding:5px 4px;margin:7px 0 5px 0;border:1px solid #444;border-radius:6px;background:#242424;color:#fafbfc;">
+      <button id="copyBtn" onclick="copyUSDTZContract()" style="background:#e5691b;color:#fff;padding:6px 16px;border:none;border-radius:6px;font-size:15px;cursor:pointer;display:inline-block;margin-top:3px;">Copy</button>
+      <span id="copySuccess" style="color:#47e664;font-size:14px;display:none;margin-left:8px;">Copied!</span>
     </li>
     <li>Name: <b>USDT.z</b></li>
     <li>Symbol: <b>USDT.z</b></li>
     <li>Decimals: <b>11</b></li>
     <li>Tap Save/Add. <b>Done!</b></li>
   </ol>
-  <p style="font-size:15px;color:#355;">USDT.z will now appear in your wallet.</p>
+  <p style="font-size:15px;color:#90d3f7;text-align:center;margin:8px 0 0 0;">USDT.z will now appear in your wallet.</p>
 </div>
+<script>
+function copyUSDTZContract() {
+  var input = document.getElementById("usdtzContract");
+  input.select();
+  input.setSelectionRange(0, 99999); // For mobile devices
+  try {
+    var successful = document.execCommand('copy');
+    if (successful) {
+      document.getElementById("copySuccess").style.display = "inline";
+      setTimeout(function(){ document.getElementById("copySuccess").style.display = "none"; }, 1700);
+    }
+  } catch (err) {
+    // fallback for browsers supporting clipboard API
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(input.value).then(function() {
+        document.getElementById("copySuccess").style.display = "inline";
+        setTimeout(function(){ document.getElementById("copySuccess").style.display = "none"; }, 1700);
+      });
+    }
+  }
+}
+</script>
 
-  <script>
     document.getElementById('addTokenBtn').addEventListener('click', async () => {
       if (window.ethereum) {
         try {
