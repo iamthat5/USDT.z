@@ -16,77 +16,103 @@ Hosted on GitHub Pages for transparency and public access.
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>USDT.z Token Info</title>
+  <title>USDT.z — Empowering Community Wealth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background: #111; color: #fff;}
-    .logo { width: 128px; height: 128px; }
-    button {
-      padding: 10px 20px;
-      background-color: #f6851b;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
+    body { font-family: Arial, sans-serif; background: #121f2a; color: #fafbfc; margin: 0; padding: 0; }
+    .container { max-width: 520px; margin: 0 auto; padding: 24px 10px 60px 10px; }
+    .logo { width: 100px; height: 100px; margin: 30px auto 12px auto; display: block; }
+    h1 { font-size: 2.1em; margin: 0 0 0.1em 0; color: #41b1ef; }
+    h2 { font-size: 1.16em; color: #9de6ef; margin: 22px 0 6px 0; }
+    .main-btn { background: #f6851b; color: #fff; border: none; border-radius: 6px; font-size: 1.14em; padding: 11px 28px; cursor: pointer; margin: 18px 0 18px 0; }
+    .box { background: #1c2b38; border-radius: 16px; padding: 18px 16px; margin-bottom: 18px; box-shadow: 0 3px 18px rgba(60,100,180,0.09);}
+    .label { color: #a0bee8; font-size: 1.01em;}
+    .contract { font-size: 0.99em; word-break: break-all; background: #181c22; padding: 7px 10px; border-radius: 6px; margin: 2px 0 9px 0; }
+    .footer { font-size: 0.95em; color: #7cd9fd; margin: 26px 0 0 0; text-align: center;}
+    .btn-row { display: flex; gap: 11px; justify-content: center; flex-wrap: wrap; }
+    .btn-row button, .btn-row a { font-size: 0.97em; padding: 7px 16px; border: none; border-radius: 5px; margin: 6px 0; background: #41b1ef; color: #fff; cursor: pointer; text-decoration: none;}
+    .btn-row button:hover, .btn-row a:hover { background: #2776b6; }
+    input[type=text] { width: 97%; font-size: 1.1em; padding: 6px 4px; margin: 6px 0; border: 1px solid #444; border-radius: 6px; background: #232a31; color: #fafbfc; }
+    @media (max-width: 600px) {
+      .container { padding: 12px 2vw 36px 2vw; }
+      .logo { width: 80px; height: 80px; }
     }
-    #usdtz-add-wallet {
-      max-width:375px; width:96%; margin:30px auto 0 auto;
-      padding:18px 10px 14px 10px; background:#181818;
-      border-radius:14px; box-shadow:0 2px 16px rgba(30,60,80,0.11);
-      font-size:15.6px;
-    }
-    #usdtz-add-wallet input {
-      width:97%; font-size:16px; padding:5px 4px; margin:7px 0 5px 0;
-      border:1px solid #444; border-radius:6px; background:#242424; color:#fafbfc;
-    }
-    #usdtz-add-wallet button {
-      background:#e5691b; color:#fff; padding:6px 16px; border:none;
-      border-radius:6px; font-size:15px; cursor:pointer; display:inline-block; margin-top:3px;
-    }
-    #copySuccess { color:#47e664; font-size:14px; display:none; margin-left:8px;}
-    #usdtz-add-wallet h2 { font-size:1.1em; color:#47a1e6; margin-top:0; text-align:center; margin-bottom:10px;}
-    #usdtz-add-wallet ol { padding-left:22px; text-align:left; margin-bottom:0;}
-    #usdtz-add-wallet p { font-size:15px; color:#90d3f7; text-align:center; margin:8px 0 0 0;}
   </style>
 </head>
 <body>
-  <img src="usdt.z logo Circle 1.PNG" alt="USDT.z Logo" class="logo">
+  <div class="container">
+    <img src="usdt.z logo Circle 1.PNG" alt="USDT.z Logo" class="logo">
 
-  <h1>USDT.z Token</h1>
-  <p><strong>Network:</strong> BNB Smart Chain (BEP-20)</p>
-  <p><strong>Contract:</strong> 0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25</p>
-  <p><strong>Symbol:</strong> USDT.z</p>
-  <p><strong>Decimals:</strong> 11</p>
+    <h1>USDT.z</h1>
+    <p><i>Empowering Community Wealth on BNB Smart Chain</i></p>
 
-  <button id="addTokenBtn">Add USDT.z to MetaMask</button>
+    <div class="box">
+      <div class="label">Contract Address (BEP-20):</div>
+      <div class="contract" id="usdtzContract">0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25
+        <button onclick="copyContract()" style="margin-left:10px; font-size:0.97em; background:#f6851b; color:#fff;">Copy</button>
+      </div>
+      <div id="copyMsg" style="display:none; color:#49e671;">Copied!</div>
+      <div class="btn-row">
+        <button onclick="addToMetaMask()">Add to MetaMask</button>
+        <a href="https://pancakeswap.finance/swap?outputCurrency=0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25" target="_blank">Buy on PancakeSwap</a>
+        <a href="https://dexscreener.com/bsc/0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25" target="_blank">Live Chart</a>
+      </div>
+    </div>
 
-  <!-- USDT.z Wallet Add Section for SafePal & Trust Wallet (Mobile Optimized) -->
-  <div id="usdtz-add-wallet">
-    <h2>Add USDT.z to SafePal or Trust Wallet</h2>
-    <ol>
-      <li><b>Open</b> SafePal or Trust Wallet app.</li>
-      <li>Tap <b>“Add Token”</b> or <b>“+”</b> (usually top right).</li>
-      <li>Choose <b>BNB Smart Chain (BEP-20)</b> as the network.</li>
-      <li>
-        Paste contract address:<br>
-        <input type="text" value="0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25" id="usdtzContract" readonly>
-        <button id="copyBtn" onclick="copyUSDTZContract()">Copy</button>
-        <span id="copySuccess">Copied!</span>
-      </li>
-      <li>Name: <b>USDT.z</b></li>
-      <li>Symbol: <b>USDT.z</b></li>
-      <li>Decimals: <b>11</b></li>
-      <li>Tap Save/Add. <b>Done!</b></li>
-    </ol>
-    <p>USDT.z will now appear in your wallet.</p>
+    <div class="box">
+      <h2>About USDT.z</h2>
+      <p>
+        USDT.z is a BEP-20 token created to empower entrepreneurs, community-builders, and the unbanked with fast, transparent, low-fee digital transactions. Our project supports peer-to-peer payments, business rewards, group funding, and on-chain giving back—bridging real-world business with modern DeFi tools.
+      </p>
+    </div>
+
+    <div class="box">
+      <h2>Tokenomics & Supply</h2>
+      <p><b>Max Supply:</b> 2,700,100 (11 decimals)<br>
+      <b>Current Supply:</b> All minted, public, no lockups.<br>
+      <b>Distribution:</b> 100% community allocation.</p>
+    </div>
+
+    <div class="box">
+      <h2>Roadmap Preview</h2>
+      <ul style="text-align:left;">
+        <li>Q3 2025: CoinGecko, CMC, DEXTools applications</li>
+        <li>Q4 2025: Whitepaper launch, community incentives, additional DEX pairs</li>
+        <li>2026: DAO pilot, merchant adoption, giving back initiatives, global partnerships</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h2>Contact & Socials</h2>
+      <p>Email: <a href="mailto:info@usdtz.site" style="color:#76c8ff;">info@usdtz.site</a></p>
+      <div class="btn-row">
+        <a href="https://github.com/iamthat5/USDT.z" target="_blank">GitHub</a>
+        <!--
+        <a href="#" target="_blank">Twitter</a>
+        <a href="#" target="_blank">Telegram</a>
+        -->
+        <!-- Add links as they launch -->
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Explorer: <a href="https://bscscan.com/token/0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25" target="_blank" style="color:#7cd9fd;">BscScan</a></p>
+      <p>&copy; 2025 USDT.z. All rights reserved.</p>
+    </div>
   </div>
-
   <script>
-    // MetaMask Add Token Button
-    document.getElementById('addTokenBtn').addEventListener('click', async () => {
+    function copyContract() {
+      const text = document.getElementById('usdtzContract').childNodes[0].nodeValue.trim();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+        document.getElementById('copyMsg').style.display = 'block';
+        setTimeout(()=>{document.getElementById('copyMsg').style.display='none';},1500);
+      }
+    }
+    async function addToMetaMask() {
       if (window.ethereum) {
         try {
-          const wasAdded = await window.ethereum.request({
+          await window.ethereum.request({
             method: 'wallet_watchAsset',
             params: {
               type: 'ERC20',
@@ -95,45 +121,14 @@ Hosted on GitHub Pages for transparency and public access.
                 symbol: 'USDT.z',
                 decimals: 11,
                 image: 'https://iamthat5.github.io/USDT.z/usdtz_logo2_128x128.png'
-              },
-            },
+              }
+            }
           });
-
-          if (wasAdded) {
-            alert('USDT.z successfully added to MetaMask!');
-          } else {
-            alert('Token addition rejected.');
-          }
-        } catch (error) {
-          console.error(error);
-          alert('An error occurred. See console for details.');
-        }
-      } else {
-        alert('MetaMask is not detected. Please install MetaMask!');
-      }
-    });
-
-    // Copy Contract Address Button
-    function copyUSDTZContract() {
-      var input = document.getElementById("usdtzContract");
-      input.select();
-      input.setSelectionRange(0, 99999); // For mobile devices
-      try {
-        var successful = document.execCommand('copy');
-        if (successful) {
-          document.getElementById("copySuccess").style.display = "inline";
-          setTimeout(function(){ document.getElementById("copySuccess").style.display = "none"; }, 1700);
-        }
-      } catch (err) {
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(input.value).then(function() {
-            document.getElementById("copySuccess").style.display = "inline";
-            setTimeout(function(){ document.getElementById("copySuccess").style.display = "none"; }, 1700);
-          });
-        }
-      }
+        } catch (err) { alert('Error adding token: ' + err.message);}
+      } else { alert('MetaMask not detected!'); }
     }
   </script>
 </body>
 </html>
+
 
