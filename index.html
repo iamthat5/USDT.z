@@ -21,8 +21,9 @@ Hosted on GitHub Pages for transparency and public access.
   <style>
     body { font-family: Arial, sans-serif; background: #121f2a; color: #cfd8e3; margin: 0; padding: 0; }
     .container { max-width: 520px; margin: 0 auto; padding: 24px 10px 60px 10px; }
-    .logo { width: 100px; height: 100px; margin: 30px auto 12px auto; display: block; }
-    h1 { font-size: 2.1em; margin: 0 0 0.1em 0; color: #9de6ef; }  /* Teal heading */
+    .logo { width: 160px; height: 160px; margin: 30px auto 10px auto; display: block; }
+    h1 { font-size: 1.35em; margin: 0; color: #9de6ef; text-align: center; font-weight: 700; letter-spacing: 1px;}
+    .subtitle { text-align: center; font-size: 1em; margin: 5px 0 16px 0; color: #76c8ff; font-weight: 500;}
     h2 { font-size: 1.16em; color: #9de6ef; margin: 22px 0 6px 0; }
     .main-btn { background: #f6851b; color: #fff; border: none; border-radius: 6px; font-size: 1.14em; padding: 11px 28px; cursor: pointer; margin: 18px 0 18px 0; }
     .box { background: #1c2b38; border-radius: 16px; padding: 18px 16px; margin-bottom: 18px; box-shadow: 0 3px 18px rgba(60,100,180,0.09);}
@@ -33,46 +34,25 @@ Hosted on GitHub Pages for transparency and public access.
     .btn-row button, .btn-row a { font-size: 0.97em; padding: 7px 16px; border: none; border-radius: 5px; margin: 6px 0; background: #41b1ef; color: #fff; cursor: pointer; text-decoration: none;}
     .btn-row button:hover, .btn-row a:hover { background: #2776b6; }
     input[type=text] { width: 97%; font-size: 1.1em; padding: 6px 4px; margin: 6px 0; border: 1px solid #444; border-radius: 6px; background: #232a31; color: #dde8f3; }
+    .whitepaper-btn-row { display: flex; justify-content: center; gap: 16px; margin: 22px 0 0 0; flex-wrap: wrap; }
+    .whitepaper-btn-row a { background: #9de6ef; color: #121f2a; border-radius: 6px; padding: 10px 26px; font-weight: 600; text-decoration: none; font-size: 1em; border: none; transition: background 0.16s;}
+    .whitepaper-btn-row a:hover { background: #41b1ef; color: #fff;}
     @media (max-width: 600px) {
       .container { padding: 12px 2vw 36px 2vw; }
       .logo { width: 80px; height: 80px; }
+      .whitepaper-btn-row { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <img src="usdt.z logo Circle 1.PNG" alt="USDT.z Logo" class="logo">
-
     <h1>USDT.z</h1>
-    <p><i>Empowering Community Wealth on BNB Smart Chain</i></p>
+    <div class="subtitle">Empowering Community Wealth on BNB Smart Chain</div>
 
-    <div class="box">
-      <div class="label">Contract Address (BEP-20):</div>
-      <div class="contract" id="usdtzContract">0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25
-        <button onclick="copyContract()" style="margin-left:10px; font-size:0.97em; background:#f6851b; color:#fff;">Copy</button>
-      </div>
-      <div id="copyMsg" style="display:none; color:#49e671;">Copied!</div>
-      <div class="btn-row">
-        <button onclick="addToMetaMask()">Add to MetaMask</button>
-        <a href="https://pancakeswap.finance/swap?outputCurrency=0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25" target="_blank">Buy on PancakeSwap</a>
-        <a href="https://dexscreener.com/bsc/0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25" target="_blank">Live Chart</a>
-      </div>
-    </div>
+    <!-- ... (your contract address, main content, etc. remains unchanged) ... -->
 
-    <div class="box">
-      <h2>About USDT.z</h2>
-      <p>
-        USDT.z is a BEP-20 token created to empower entrepreneurs, community-builders, and the unbanked with fast, transparent, low-fee digital transactions. Our project supports peer-to-peer payments, business rewards, group funding, and on-chain giving back—bridging real-world business with modern DeFi tools.
-      </p>
-    </div>
-
-    <div class="box">
-      <h2>Tokenomics & Supply</h2>
-      <p><b>Max Supply:</b> 2,700,100 (11 decimals)<br>
-      <b>Current Supply:</b> All minted, public, no lockups.<br>
-      <b>Distribution:</b> 100% community allocation.</p>
-    </div>
-
+    <!-- Roadmap Section Example -->
     <div class="box">
       <h2>Roadmap Preview</h2>
       <ul style="text-align:left;">
@@ -82,53 +62,16 @@ Hosted on GitHub Pages for transparency and public access.
       </ul>
     </div>
 
-    <div class="box">
-      <h2>Contact & Socials</h2>
-      <p>Email: <a href="mailto:info@usdtz.site" style="color:#76c8ff;">info@usdtz.site</a></p>
-      <div class="btn-row">
-        <a href="https://github.com/iamthat5/USDT.z" target="_blank">GitHub</a>
-        <!--
-        <a href="#" target="_blank">Twitter</a>
-        <a href="#" target="_blank">Telegram</a>
-        -->
-      </div>
+    <!-- Whitepaper Buttons (NEW) -->
+    <div class="whitepaper-btn-row">
+      <a href="https://github.com/iamthat5/USDT.z/raw/main/USDT.z White Paper Project-1.pdf" target="_blank">📖 View Whitepaper</a>
+      <a href="https://github.com/iamthat5/USDT.z/raw/main/USDT.z White Paper Project-1.pdf" download>⬇️ Download Whitepaper</a>
     </div>
 
-    <div class="footer">
-      <p>Explorer: <a href="https://bscscan.com/token/0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25" target="_blank" style="color:#7cd9fd;">BscScan</a></p>
-      <p>&copy; 2025 USDT.z. All rights reserved.</p>
-    </div>
+    <!-- ... (rest of your site content, contact/socials, footer, etc.) ... -->
   </div>
-  <script>
-    function copyContract() {
-      const text = document.getElementById('usdtzContract').childNodes[0].nodeValue.trim();
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(text);
-        document.getElementById('copyMsg').style.display = 'block';
-        setTimeout(()=>{document.getElementById('copyMsg').style.display='none';},1500);
-      }
-    }
-    async function addToMetaMask() {
-      if (window.ethereum) {
-        try {
-          await window.ethereum.request({
-            method: 'wallet_watchAsset',
-            params: {
-              type: 'ERC20',
-              options: {
-                address: '0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25',
-                symbol: 'USDT.z',
-                decimals: 11,
-                image: 'https://iamthat5.github.io/USDT.z/usdtz_logo2_128x128.png'
-              }
-            }
-          });
-        } catch (err) { alert('Error adding token: ' + err.message);}
-      } else { alert('MetaMask not detected!'); }
-    }
-  </script>
+  <!-- (keep your scripts as before) -->
 </body>
 </html>
-
 
 
