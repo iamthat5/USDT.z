@@ -1,17 +1,3 @@
-<!--
-USDT.z Token Info Page
-Network: BNB Smart Chain (BEP-20)
-Contract Address: 0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25
-Decimals: 11
-Symbol: USDT.z
-
-Purpose:
-This page provides official token information, contract metadata, and an interactive "Add to MetaMask" button 
-for wallet integration.
-
-Hosted on GitHub Pages for transparency and public access.
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,17 +9,31 @@ Hosted on GitHub Pages for transparency and public access.
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #0f172a;
-            --accent: #8b5cf6;
+            /* Banner gradient (black -> teal) - SWITCHED */
+            --primary-start: #00B4B4;
+            --primary-end: #000000;
+            
+            /* Core palette */
+            --primary: #00B4B4;
+            --primary-dark: #007F7F;
+            --secondary: #0b1220;
+            --accent: #00B4B4;
             --light: #1e293b;
-            --dark: #f8fafc;
-            --gray: #94a3b8;
-            --success: #10b981;
-            --card-bg: #1e293b;
-            --card-border: #334155;
-            --footer-bg: #0f172a;
+            --dark: #F8FAFC;
+            --gray: #94A3B8;
+            --success: #10B981;
+            
+            /* Card surfaces */
+            --card-bg: rgba(15,23,42,0.65);
+            --card-border: rgba(0,180,180,0.5);
+            --card-glow: rgba(0, 180, 180, 0.8);
+            
+            /* Footer gradient - SWITCHED */
+            --footer-start: #00B4B4;
+            --footer-end: #000000;
+            
+            /* New backgrounds */
+            --gloss-black: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
         }
         
         * {
@@ -44,7 +44,7 @@ Hosted on GitHub Pages for transparency and public access.
         }
         
         body {
-            background: linear-gradient(135deg, #0c1220 0%, #0f172a 100%);
+            background: var(--secondary);
             color: #e2e8f0;
             line-height: 1.6;
             overflow-x: hidden;
@@ -59,7 +59,7 @@ Hosted on GitHub Pages for transparency and public access.
         
         /* Header Styles */
         header {
-            background-color: rgba(15, 23, 42, 0.95);
+            background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
@@ -80,7 +80,7 @@ Hosted on GitHub Pages for transparency and public access.
             gap: 10px;
             font-weight: 700;
             font-size: 1.5rem;
-            color: var(--primary);
+            color: var(--dark);
         }
         
         .logo-img {
@@ -102,7 +102,8 @@ Hosted on GitHub Pages for transparency and public access.
         }
         
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--dark);
+            opacity: 0.9;
         }
         
         .nav-links a::after {
@@ -112,7 +113,7 @@ Hosted on GitHub Pages for transparency and public access.
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: var(--primary);
+            background-color: var(--dark);
             transition: width 0.3s;
         }
         
@@ -121,8 +122,8 @@ Hosted on GitHub Pages for transparency and public access.
         }
         
         .cta-button {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
+            background: var(--dark);
+            color: var(--primary);
             border: none;
             padding: 10px 20px;
             border-radius: 8px;
@@ -136,7 +137,27 @@ Hosted on GitHub Pages for transparency and public access.
         
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 180, 180, 0.4);
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: var(--dark);
+            border: 2px solid var(--dark);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .secondary-button:hover {
+            background-color: var(--dark);
+            color: var(--primary);
+            transform: translateY(-2px);
         }
         
         .mobile-menu-btn {
@@ -154,20 +175,7 @@ Hosted on GitHub Pages for transparency and public access.
             text-align: center;
             position: relative;
             overflow: hidden;
-            background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.15), transparent 50%),
-                        radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.15), transparent 50%);
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(99, 102, 241, 0.03)"/></svg>');
-            background-size: cover;
-            opacity: 0.5;
+            background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
         }
         
         .hero h1 {
@@ -184,7 +192,7 @@ Hosted on GitHub Pages for transparency and public access.
             font-size: 1.3rem;
             max-width: 700px;
             margin: 0 auto 30px;
-            color: var(--gray);
+            color: var(--dark);
             position: relative;
             z-index: 1;
         }
@@ -197,26 +205,6 @@ Hosted on GitHub Pages for transparency and public access.
             flex-wrap: wrap;
             position: relative;
             z-index: 1;
-        }
-        
-        .secondary-button {
-            background-color: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .secondary-button:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-2px);
         }
         
         .animated-logo {
@@ -239,39 +227,99 @@ Hosted on GitHub Pages for transparency and public access.
         }
         
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
-            70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(99, 102, 241, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 180, 180, 0.7); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(0, 180, 180, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 180, 180, 0); }
         }
         
-        /* Token Actions Section */
-        .token-actions {
+        /* Main content sections */
+        .section {
             padding: 80px 0;
-            background-color: var(--light);
         }
         
-        .actions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+        .section-dark {
+            background: var(--gloss-black);
         }
         
-        .action-card {
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            bottom: -10px;
+            left: 20%;
+            border-radius: 4px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 30px auto 0;
+            font-size: 1.1rem;
+        }
+        
+        /* Card styles */
+        .card {
             background: var(--card-bg);
             border-radius: 16px;
             padding: 30px;
             box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
+            transition: all 0.3s ease;
             border: 1px solid var(--card-border);
+            position: relative;
+            overflow: hidden;
         }
         
-        .action-card:hover {
+        /* Glow effect on hover for specified cards */
+        #videos-content .video-card:hover,
+        #courses-content .card:hover,
+        .tokenomics .token-card:hover,
+        #shop .card:hover {
+            box-shadow: 0 0 15px 5px var(--card-glow);
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
         
+        /* Touch responsive for Token Actions and Features cards */
+        #actions .card:hover,
+        #about .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .grid {
+            display: grid;
+            gap: 30px;
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        /* Token Actions Section */
         .action-icon {
             width: 70px;
             height: 70px;
@@ -283,12 +331,6 @@ Hosted on GitHub Pages for transparency and public access.
             margin: 0 auto 20px;
             color: white;
             font-size: 1.8rem;
-        }
-        
-        .action-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: white;
         }
         
         .contract-address {
@@ -334,74 +376,6 @@ Hosted on GitHub Pages for transparency and public access.
         }
         
         /* Features Section */
-        .features {
-            padding: 80px 0;
-            background-color: var(--light);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.8rem;
-            color: white;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 60%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            bottom: -10px;
-            left: 20%;
-            border-radius: 4px;
-        }
-        
-        .section-title p {
-            color: var(--gray);
-            max-width: 700px;
-            margin: 30px auto 0;
-            font-size: 1.1rem;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid var(--card-border);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-        }
-        
         .feature-icon {
             width: 70px;
             height: 70px;
@@ -418,50 +392,10 @@ Hosted on GitHub Pages for transparency and public access.
             color: white;
         }
         
-        .feature-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            color: white;
-        }
-        
-        .feature-card p {
-            color: var(--gray);
-            font-size: 1.05rem;
-        }
-        
         /* Tokenomics Section */
         .tokenomics {
-            padding: 80px 0;
-            background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.1), transparent 50%),
-                        radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.1), transparent 50%);
-        }
-        
-        .token-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .token-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-            text-align: center;
-            border: 1px solid var(--card-border);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .token-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: radial-gradient(circle at top left, rgba(0, 180, 180, 0.1), transparent 50%),
+                        radial-gradient(circle at bottom right, rgba(0, 180, 180, 0.1), transparent 50%);
         }
         
         .token-card h3 {
@@ -470,8 +404,9 @@ Hosted on GitHub Pages for transparency and public access.
             color: white;
         }
         
+        /* Adjusted token value size */
         .token-card .value {
-            font-size: 2.8rem;
+            font-size: 2.2rem; /* Reduced from 2.8rem */
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 10px;
@@ -563,7 +498,7 @@ Hosted on GitHub Pages for transparency and public access.
         }
         
         .chain-badge.active {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, #F0B90B, #000000);
             color: white;
         }
         
@@ -573,8 +508,7 @@ Hosted on GitHub Pages for transparency and public access.
         
         /* Roadmap */
         .roadmap {
-            padding: 80px 0;
-            background-color: var(--light);
+            background: var(--gloss-black);
         }
         
         .timeline {
@@ -656,12 +590,6 @@ Hosted on GitHub Pages for transparency and public access.
         }
         
         /* Exchange Partners */
-        .exchanges {
-            padding: 80px 0;
-            background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.1), transparent 50%),
-                        radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.1), transparent 50%);
-        }
-        
         .exchange-logos {
             display: flex;
             justify-content: center;
@@ -693,18 +621,12 @@ Hosted on GitHub Pages for transparency and public access.
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
             color: white;
             border-color: var(--primary);
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-        }
-        
-        .exchange-logo img {
-            max-width: 100%;
-            max-height: 100%;
+            background: linear-gradient(135deg, rgba(0, 180, 180, 0.1), rgba(0, 180, 180, 0.1));
         }
         
         /* DexScreener Chart Section */
         .chart-section {
-            padding: 60px 0;
-            background-color: var(--light);
+            background: var(--gloss-black);
         }
         
         .chart-container {
@@ -739,24 +661,205 @@ Hosted on GitHub Pages for transparency and public access.
             border-radius: 4px;
         }
         
-        /* Footer */
-        footer {
-            background-color: var(--footer-bg);
+        /* NEW: Shop Section */
+        .product-card {
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-image {
+            height: 180px;
+            background: var(--light);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
             color: white;
-            padding: 80px 0 30px;
+        }
+        
+        .product-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        
+        .product-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        /* NEW: Academy Section */
+        .academy-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 10px;
+        }
+        
+        .academy-tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
             position: relative;
         }
         
-        footer::before {
+        .academy-tab.active {
+            color: var(--primary);
+        }
+        
+        .academy-tab.active::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,100 L100,0 L100,100 Z" fill="rgba(99, 102, 241, 0.1)"/></svg>');
-            background-size: cover;
-            opacity: 0.3;
+            height: 3px;
+            background: var(--primary);
+            bottom: -11px;
+            left: 0;
+            border-radius: 3px;
+        }
+        
+        .academy-content {
+            display: none;
+        }
+        
+        .academy-content.active {
+            display: block;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid var(--card-border);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-thumbnail {
+            height: 180px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 3rem;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .video-description {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        .webinar-list {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .webinar-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            border: 1px solid var(--card-border);
+        }
+        
+        .webinar-date {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .webinar-date .day {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .webinar-date .month {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        .webinar-details {
+            flex-grow: 1;
+            min-width: 250px;
+        }
+        
+        .webinar-title {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: white;
+        }
+        
+        .webinar-time, .webinar-tutor {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--footer-start) 0%, var(--footer-end) 100%);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
         }
         
         .footer-grid {
@@ -779,7 +882,7 @@ Hosted on GitHub Pages for transparency and public access.
             position: absolute;
             width: 50px;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: var(--dark);
             bottom: -12px;
             left: 0;
             border-radius: 4px;
@@ -787,7 +890,7 @@ Hosted on GitHub Pages for transparency and public access.
         
         .footer-col p {
             margin-bottom: 20px;
-            color: var(--gray);
+            color: var(--dark);
             font-size: 1.05rem;
             line-height: 1.7;
         }
@@ -801,7 +904,7 @@ Hosted on GitHub Pages for transparency and public access.
         }
         
         .footer-links a {
-            color: var(--gray);
+            color: var(--dark);
             text-decoration: none;
             transition: color 0.3s;
             display: flex;
@@ -827,16 +930,17 @@ Hosted on GitHub Pages for transparency and public access.
             justify-content: center;
             width: 45px;
             height: 45px;
-            background-color: var(--card-bg);
+            background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: white;
             font-size: 1.3rem;
             transition: all 0.3s;
-            border: 1px solid var(--card-border);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .social-icons a:hover {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: var(--dark);
+            color: var(--primary);
             transform: translateY(-5px);
         }
         
@@ -844,8 +948,8 @@ Hosted on GitHub Pages for transparency and public access.
             text-align: center;
             padding-top: 40px;
             margin-top: 40px;
-            border-top: 1px solid var(--card-border);
-            color: var(--gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--dark);
             position: relative;
             z-index: 1;
             font-size: 1rem;
@@ -915,7 +1019,7 @@ Hosted on GitHub Pages for transparency and public access.
                 align-items: center;
             }
             
-            .actions-grid {
+            .grid-3 {
                 grid-template-columns: 1fr;
             }
             
@@ -926,6 +1030,21 @@ Hosted on GitHub Pages for transparency and public access.
             .exchange-logo {
                 width: 160px;
                 height: 80px;
+            }
+            
+            .webinar-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .academy-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .academy-tab {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -943,6 +1062,8 @@ Hosted on GitHub Pages for transparency and public access.
                     <a href="#about">About</a>
                     <a href="#tokenomics">Tokenomics</a>
                     <a href="#actions">Token Actions</a>
+                    <a href="#shop">Shop</a>
+                    <a href="#academy">Academy</a>
                     <a href="#roadmap">Roadmap</a>
                     <a href="#exchanges">Exchanges</a>
                 </div>
@@ -976,15 +1097,15 @@ Hosted on GitHub Pages for transparency and public access.
     </section>
 
     <!-- Token Actions Section -->
-    <section class="token-actions" id="actions">
+    <section class="section section-dark" id="actions">
         <div class="container">
             <div class="section-title">
                 <h2>Token Actions</h2>
                 <p>Manage your USDT.z tokens directly from our platform</p>
             </div>
             
-            <div class="actions-grid">
-                <div class="action-card">
+            <div class="grid grid-3">
+                <div class="card">
                     <div class="action-icon">
                         <i class="fas fa-wallet"></i>
                     </div>
@@ -995,7 +1116,7 @@ Hosted on GitHub Pages for transparency and public access.
                     </button>
                 </div>
                 
-                <div class="action-card">
+                <div class="card">
                     <div class="action-icon">
                         <i class="fas fa-copy"></i>
                     </div>
@@ -1010,7 +1131,7 @@ Hosted on GitHub Pages for transparency and public access.
                     </button>
                 </div>
                 
-                <div class="action-card">
+                <div class="card">
                     <div class="action-icon">
                         <i class="fas fa-link"></i>
                     </div>
@@ -1030,28 +1151,28 @@ Hosted on GitHub Pages for transparency and public access.
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="about">
+    <section class="section" id="about">
         <div class="container">
             <div class="section-title">
                 <h2>Why Choose USDT.z</h2>
                 <p>We've built an ecosystem to solve real-world problems for entrepreneurs and unbanked communities</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
+            <div class="grid grid-3">
+                <div class="card">
                     <div class="feature-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
                     <h3>Instant, Low-Fee Payments</h3>
                     <p>Send or receive funds globally in seconds with minimal fees, far below traditional banks or remittance services. Perfect for cross-border transactions and business operations.</p>
                 </div>
-                <div class="feature-card">
+                <div class="card">
                     <div class="feature-icon">
                         <i class="fas fa-lock"></i>
                     </div>
                     <h3>Transparent Business Rewards</h3>
                     <p>Automate commission payouts with smart contracts. Every reward is traceable, instant, and secure. No more delays or disputes with transparent on-chain records.</p>
                 </div>
-                <div class="feature-card">
+                <div class="card">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
@@ -1063,7 +1184,7 @@ Hosted on GitHub Pages for transparency and public access.
     </section>
 
     <!-- Tokenomics Section -->
-    <section class="tokenomics" id="tokenomics">
+    <section class="section tokenomics" id="tokenomics">
         <div class="container">
             <div class="section-title">
                 <h2>Token Economics</h2>
@@ -1089,18 +1210,18 @@ Hosted on GitHub Pages for transparency and public access.
                 </iframe>
             </div>
             
-            <div class="token-grid">
-                <div class="token-card">
+            <div class="grid grid-3">
+                <div class="card token-card">
                     <h3>Total Supply</h3>
                     <div class="value">27,001,000,000</div>
                     <div class="label">USDT.z Tokens</div>
                 </div>
-                <div class="token-card">
+                <div class="card token-card">
                     <h3>Token Symbol</h3>
                     <div class="value">USDT.z</div>
                     <div class="label">BEP-20 Standard</div>
                 </div>
-                <div class="token-card">
+                <div class="card token-card">
                     <h3>Market Cap</h3>
                     <div class="value">$27.09M</div>
                     <div class="label">Fully diluted valuation</div>
@@ -1110,7 +1231,7 @@ Hosted on GitHub Pages for transparency and public access.
             <!-- Chain Badges -->
             <div class="chain-badges">
                 <div class="chain-badge active">
-                    <i class="fab fa-btc"></i>
+                    <i class="fas fa-coins" style="color: #F0B90B;"></i>
                     <span>BNB Chain (BSC)</span>
                 </div>
                 <div class="chain-badge">
@@ -1125,8 +1246,201 @@ Hosted on GitHub Pages for transparency and public access.
         </div>
     </section>
 
+    <!-- NEW: Shop Section -->
+    <section class="section section-dark" id="shop">
+        <div class="container">
+            <div class="section-title">
+                <h2>USDT.z Shop</h2>
+                <p>Purchase USDT.z tokens and exclusive digital products</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="card product-card">
+                    <div class="product-image">
+                        <img src="usdt.z%20logo%20Circle%201.PNG" alt="USDT.z Logo">
+                    </div>
+                    <h3 class="product-title">USDT.z Tokens</h3>
+                    <p class="product-description">Purchase USDT.z tokens directly at current market price with multiple payment options.</p>
+                    <div class="product-price">$1.0035</div>
+                    <button class="cta-button">
+                        <i class="fas fa-shopping-cart"></i> Buy Now
+                    </button>
+                </div>
+                
+                <div class="card product-card">
+                    <div class="product-image">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="product-title">Trading Guide</h3>
+                    <p class="product-description">Comprehensive guide to cryptocurrency trading strategies and market analysis.</p>
+                    <div class="product-price">$29.99</div>
+                    <button class="cta-button">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+                
+                <div class="card product-card">
+                    <div class="product-image">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="product-title">Premium Membership</h3>
+                    <p class="product-description">Access exclusive content, early token sales, and premium community features.</p>
+                    <div class="product-price">$99.99</div>
+                    <button class="cta-button">
+                        <i class="fas fa-shopping-cart"></i> Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Academy Section -->
+    <section class="section" id="academy">
+        <div class="container">
+            <div class="section-title">
+                <h2>USDT.z Academy</h2>
+                <p>Learn and grow with our educational resources and training programs</p>
+            </div>
+            
+            <div class="academy-tabs">
+                <button class="academy-tab active" data-tab="videos">Video Library</button>
+                <button class="academy-tab" data-tab="webinars">Live Webinars</button>
+                <button class="academy-tab" data-tab="courses">Trading Courses</button>
+            </div>
+            
+            <div class="academy-content active" id="videos-content">
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Introduction to Crypto Trading</h3>
+                            <p class="video-description">Learn the basics of cryptocurrency trading and how to get started.</p>
+                            <div class="video-meta">
+                                <span>45 min</span>
+                                <span>Free</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Technical Analysis Masterclass</h3>
+                            <p class="video-description">Deep dive into chart patterns, indicators, and trading signals.</p>
+                            <div class="video-meta">
+                                <span>1h 20min</span>
+                                <span>Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Risk Management Strategies</h3>
+                            <p class="video-description">Learn how to protect your investments and manage trading risks.</p>
+                            <div class="video-meta">
+                                <span>55 min</span>
+                                <span>Free</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="academy-content" id="webinars-content">
+                <div class="webinar-list">
+                    <div class="webinar-item">
+                        <div class="webinar-date">
+                            <div class="day">15</div>
+                            <div class="month">Oct</div>
+                        </div>
+                        <div class="webinar-details">
+                            <h3 class="webinar-title">Advanced Trading Strategies</h3>
+                            <div class="webinar-time"><i class="fas fa-clock"></i> 7:00 PM UTC</div>
+                            <div class="webinar-tutor"><i class="fas fa-user"></i> Expert Trader: John Smith</div>
+                        </div>
+                        <button class="cta-button">Register Now</button>
+                    </div>
+                    
+                    <div class="webinar-item">
+                        <div class="webinar-date">
+                            <div class="day">22</div>
+                            <div class="month">Oct</div>
+                        </div>
+                        <div class="webinar-details">
+                            <h3 class="webinar-title">Market Analysis & Predictions</h3>
+                            <div class="webinar-time"><i class="fas fa-clock"></i> 6:30 PM UTC</div>
+                            <div class="webinar-tutor"><i class="fas fa-user"></i> Senior Analyst: Maria Rodriguez</div>
+                        </div>
+                        <button class="cta-button">Register Now</button>
+                    </div>
+                    
+                    <div class="webinar-item">
+                        <div class="webinar-date">
+                            <div class="day">29</div>
+                            <div class="month">Oct</div>
+                        </div>
+                        <div class="webinar-details">
+                            <h3 class="webinar-title">Q4 2025 Crypto Outlook</h3>
+                            <div class="webinar-time"><i class="fas fa-clock"></i> 8:00 PM UTC</div>
+                            <div class="webinar-tutor"><i class="fas fa-user"></i> Market Strategist: David Chen</div>
+                        </div>
+                        <button class="cta-button">Register Now</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="academy-content" id="courses-content">
+                <div class="grid grid-3">
+                    <div class="card product-card">
+                        <div class="product-image">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="product-title">Beginner Trading Course</h3>
+                        <p class="product-description">Complete guide for beginners to start trading cryptocurrencies safely.</p>
+                        <div class="product-price">$149.99</div>
+                        <button class="cta-button">
+                            <i class="fas fa-shopping-cart"></i> Enroll Now
+                        </button>
+                    </div>
+                    
+                    <div class="card product-card">
+                        <div class="product-image">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="product-title">Advanced Technical Analysis</h3>
+                        <p class="product-description">Master advanced charting techniques and indicators for professional trading.</p>
+                        <div class="product-price">$249.99</div>
+                        <button class="cta-button">
+                            <i class="fas fa-shopping-cart"></i> Enroll Now
+                        </button>
+                    </div>
+                    
+                    <div class="card product-card">
+                        <div class="product-image">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3 class="product-title">Portfolio Management</h3>
+                        <p class="product-description">Learn how to build and manage a profitable cryptocurrency portfolio.</p>
+                        <div class="product-price">$199.99</div>
+                        <button class="cta-button">
+                            <i class="fas fa-shopping-cart"></i> Enroll Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Roadmap Section -->
-    <section class="roadmap" id="roadmap">
+    <section class="section roadmap" id="roadmap">
         <div class="container">
             <div class="section-title">
                 <h2>Project Roadmap</h2>
@@ -1166,7 +1480,7 @@ Hosted on GitHub Pages for transparency and public access.
     </section>
 
     <!-- Exchange Partners -->
-    <section class="exchanges" id="exchanges">
+    <section class="section" id="exchanges">
         <div class="container">
             <div class="section-title">
                 <h2>Exchange Partners</h2>
@@ -1196,7 +1510,7 @@ Hosted on GitHub Pages for transparency and public access.
     </section>
 
     <!-- DexScreener Chart -->
-    <section class="chart-section">
+    <section class="section chart-section">
         <div class="container">
             <div class="chart-container">
                 <h2>Live USDT.z Chart</h2>
@@ -1226,7 +1540,7 @@ Hosted on GitHub Pages for transparency and public access.
                     <ul class="footer-links">
                         <li><a href="USDT.z%20White%20Paper%20Project-1.pdf" download><i class="fas fa-file-pdf"></i> Whitepaper</a></li>
                         <li><a href="https://github.com/jamthat5/USDT.z" target="_blank"><i class="fab fa-github"></i> GitHub Repository</a></li>
-                        <li><a href="https://bscscan.com/token/0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25" target="_blank"><i class="fas fa-chart-line"></i> BscScan Contract</a></li>
+                        <li><a href="https://bscscan.com/token/0xc70ea41f0f11d6463dbda6c9b5d84367d14d6d25" target="_blank><i class="fas fa-chart-line"></i> BscScan Contract</a></li>
                         <li><a href="#"><i class="fas fa-blog"></i> Blog & News</a></li>
                         <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
                     </ul>
@@ -1251,7 +1565,7 @@ Hosted on GitHub Pages for transparency and public access.
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 USDT.z. All rights reserved. Empowering Community Wealth on BNB Smart Chain.</p>
+                <p>&copy; 2025 USDT.z. All rights reserved. Empowering Community Wealth on BNB Smart Chain.</p>
             </div>
         </div>
     </footer>
@@ -1331,6 +1645,24 @@ Hosted on GitHub Pages for transparency and public access.
             }
         });
 
+        // Academy tabs functionality
+        const academyTabs = document.querySelectorAll('.academy-tab');
+        
+        academyTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.academy-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.academy-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const contentId = `${tab.dataset.tab}-content`;
+                document.getElementById(contentId).classList.add('active');
+            });
+        });
+
         // Simulate live price updates
         function updateLivePrice() {
             const priceElement = document.querySelector('.price-value');
@@ -1357,4 +1689,3 @@ Hosted on GitHub Pages for transparency and public access.
     </script>
 </body>
 </html>
-
