@@ -1183,6 +1183,204 @@
         </div>
     </section>
 
+    <!-- Add this section after the Features section -->
+<section class="section section-dark" id="updates">
+    <div class="container">
+        <div class="section-title">
+            <h2>Community Pulse</h2>
+            <p>Latest news, announcements, and updates from the USDT.z team</p>
+        </div>
+        
+        <div class="updates-container" id="updatesContainer">
+            <!-- Updates will be dynamically inserted here -->
+            <div class="update-placeholder">
+                <i class="fas fa-newspaper" style="font-size: 3rem; margin-bottom: 20px; color: var(--primary);"></i>
+                <h3>Updates Loading...</h3>
+                <p>Latest news and announcements will appear here soon.</p>
+            </div>
+        </div>
+        
+        <div class="social-fallback">
+            <p>Follow us on social media for real-time updates:</p>
+            <div class="social-fallback-links">
+                <a href="https://t.me/USDTzfamily" target="_blank" class="secondary-button">
+                    <i class="fab fa-telegram"></i> Telegram
+                </a>
+                <a href="#" target="_blank" class="secondary-button">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Add to existing CSS */
+.updates-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.update-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    border: 1px solid var(--card-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.update-card:hover {
+    box-shadow: 0 0 15px 5px var(--card-glow);
+    transform: translateY(-5px);
+}
+
+.update-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), var(--accent));
+}
+
+.update-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.update-title {
+    font-size: 1.4rem;
+    color: white;
+    margin-right: 15px;
+}
+
+.update-date {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.update-content {
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+.update-placeholder {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--gray);
+}
+
+.social-fallback {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid var(--card-border);
+}
+
+.social-fallback p {
+    margin-bottom: 20px;
+    color: var(--gray);
+}
+
+.social-fallback-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .update-header {
+        flex-direction: column;
+    }
+    
+    .update-date {
+        margin-top: 10px;
+        align-self: flex-start;
+    }
+}
+</style>
+
+<script>
+// Add to existing JavaScript
+// Manual updates array - you can edit these manually until API is ready
+const manualUpdates = [
+    {
+        title: "CMC Listing Application Submitted",
+        date: "September 21, 2025",
+        content: "We've officially submitted our application to CoinMarketCap. The review process typically takes 7-14 business days. We'll keep you updated on our progress."
+    },
+    {
+        title: "Website Version 2.0 Launched",
+        date: "September 19, 2025",
+        content: "Our newly redesigned website is now live with improved functionality and user experience. Check out the new Academy and Shop sections!"
+    },
+    {
+        title: "Offical Twitter launch",
+        date: "September 15, 2025",
+        content: "We are happy to announce the launch of our X account, come check us out, @Project_USDTz join the  movement lets build together!"
+    }
+];
+
+// Function to display updates
+function displayUpdates(updates) {
+    const container = document.getElementById('updatesContainer');
+    container.innerHTML = ''; // Clear placeholder
+    
+    updates.forEach(update => {
+        const updateElement = document.createElement('div');
+        updateElement.className = 'update-card';
+        updateElement.innerHTML = `
+            <div class="update-header">
+                <h3 class="update-title">${update.title}</h3>
+                <span class="update-date">${update.date}</span>
+            </div>
+            <div class="update-content">
+                <p>${update.content}</p>
+            </div>
+        `;
+        container.appendChild(updateElement);
+    });
+}
+
+// Function to fetch updates from API (for future use)
+async function fetchUpdates() {
+    try {
+        // This will be your API endpoint when ready
+        const response = await fetch('https://api.yoursite.com/updates');
+        const updates = await response.json();
+        displayUpdates(updates);
+    } catch (error) {
+        console.error('Error fetching updates:', error);
+        // Fallback to manual updates if API fails
+        displayUpdates(manualUpdates);
+    }
+}
+
+// Initialize updates on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // For now, use manual updates
+    displayUpdates(manualUpdates);
+    
+    // Later, replace with: fetchUpdates();
+});
+
+// Add this to your existing mobile menu handler to ensure smooth scrolling works for the new section
+// This is already in your existing code, just noting it should work with the new section
+</script>
+  
     <!-- Tokenomics Section -->
     <section class="section tokenomics" id="tokenomics">
         <div class="container">
